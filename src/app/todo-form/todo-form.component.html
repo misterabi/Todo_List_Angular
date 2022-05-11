@@ -1,0 +1,19 @@
+<form (ngSubmit)="emitFormValue()" #form="ngForm">
+  <input
+    type="text"
+    name="fieldValue"
+    [(ngModel)]="inputValue"
+    required
+    minlength="2"
+    maxlength="15"
+    parttern="[a-zA-Z0-9 ]*"
+    #field="ngModel"
+  />
+  <div *ngIf="field.errors">
+    <div *ngIf="field.errors.required">Ce champ est requis</div>
+    <div *ngIf="field.errors.minlength">Valeur trop petite</div>
+    <div *ngIf="field.errors.maxlength">Valeur trop grande</div>
+    <div *ngIf="field.errors.pattern">Ne respecte pas le format attendu</div>
+  </div>
+  <button type="submit" [disabled]="form.invalid">Add</button>
+</form>
